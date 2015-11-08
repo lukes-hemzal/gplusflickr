@@ -1,0 +1,29 @@
+{block title}{$photo->getTitle()}{/block}
+{block content}
+<a n:href="Photo:photo $photo->getId(), !$valid">{if $valid}I nevalidní{else}Jen validní{/if}</a>
+<div class="googlePhoto">
+	<img src="{$photo->getSource()}" title="{$photo->getTitle()}" />
+	{if $photo->getSummary()}
+	<p class="comment">
+		{$photo->getSummary()}
+	</p>
+	{/if}
+</div>
+<div class="flickrPhotos">
+{foreach $results as $result}
+{var $flickrPhoto = $result->getFlickrPhoto()}
+	<div class="flickrPhoto">
+		<img src="{$flickrPhoto->getUrl()}" title="{$flickrPhoto->getTitle()}" />
+		<div class="dimensions">
+			<a href="{$flickrPhoto->getOriginalUrl()}" class="originalLink">{$flickrPhoto->getWidth()}x{$flickrPhoto->getHeight()}</a>
+			<a href="{$flickrPhoto->getPageUrl()}" class="pageLink">Stránka</a>
+		</div>
+		{if $result->isValid()}
+		<a class="invalidateLink" n:href="Photo:invalidate $photo->getId(), $flickrPhoto->getId()" title="Zahodit">Zahodit</a>
+		{else}
+		<a class="validateLink" n:href="Photo:validate $photo->getId(), $flickrPhoto->getId()" title="Obnovit">Obnovit</a>
+		{/if}
+	</div>
+{/foreach}
+</div>
+{/block}

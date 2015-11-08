@@ -1,0 +1,15 @@
+# PhpStorm
+/.idea/
+
+# composer
+/vendor/
+/node_modules/
+
+/log/
+/temp/
+/data/
+
+/config/config.local.neon
+
+/www/web.config
+/www/styles/style.css

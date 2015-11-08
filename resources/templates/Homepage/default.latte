@@ -1,0 +1,6 @@
+{block content}
+<ul>
+	<li>{if !$googleAuth}<a n:href="Google:auth">Google</a>{else}<a n:href="Photo:albums">Alba</a>{/if}</li>
+	{if !$flickrAuth}<li><a n:href="Flickr:auth">Flickr</a></li>{/if}
+</ul>
+{/block}

@@ -1,0 +1,15 @@
+database:
+	default:
+		dsn: "sqlite:%appDir%/db.sqlite"
+
+parameters:
+	# google credentials
+	# https://console.developers.google.com/start
+	google:
+		id: *.apps.googleusercontent.com
+		secret: *
+	# flickr credentials
+	# https://www.flickr.com/services/apps/create/
+	flickr:
+		key: *
+		secret: *

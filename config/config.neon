@@ -1,0 +1,14 @@
+includes:
+	- services.neon
+php:
+	date.timezone: Europe/Prague
+
+parameters:
+	ssl:
+		verify: null
+
+application:
+	mapping:
+		*: gplusFlickr\*module\presenter\*Presenter
+
+

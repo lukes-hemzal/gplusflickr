@@ -1,0 +1,15 @@
+{block title}Alba{/block}
+{block content}
+<div class="menu">
+<a n:href="Download:albums">Obnovit</a>
+</div>
+{if !empty($albums)}
+<ul class="albums afterMenu">
+{foreach $albums as $album}
+	<li class="album">
+		<a n:href="Photo:album, $album->getId()">{$album->getTitle()}</a>
+	</li>
+{/foreach}
+</ul>
+{/if}
+{/block}

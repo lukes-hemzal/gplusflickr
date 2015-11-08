@@ -1,0 +1,24 @@
+{block title}{$album->getTitle()}{/block}
+{block content}
+<div class="menu">
+	<a n:href="Photo:albums">Zpět na alba</a>
+	<a href="#" class="seekFlickr">Prozkoumat Flickr</a>
+	<a href="#" class="hideFound">Skrýt spárované</a>
+	{* TODO hide until photos are not found on Flickr *}
+	<a n:href="Photo:uploadAlbum $album->getId()" class="uploadLink">Nahrát na Flickr</a>
+</div>
+<div class="photos afterMenu">
+{foreach $photos as $photo}
+	<div class="photo">
+		<img src="{$photo->getSource()}" />
+		{if $photo->getSummary()}
+		<p class="comment">
+			{$photo->getSummary()}
+		</p>
+		{/if}
+		<a class="findLink" n:href="Photo:photo $photo->getId()" title="{$photo->getTitle()}">{$photo->getTitle()}</a>
+	</div>
+{/foreach}
+<script>gplusFlickr.controller('album');</script>
+</div>
+{/block}

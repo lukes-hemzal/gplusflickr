@@ -1,0 +1,52 @@
+services:
+	router: gplusFlickr\router\Factory::createRouter
+
+	- gplusFlickr\db\Info
+	- gplusFlickr\db\Utils
+
+	#flickr
+	flickr.Api:
+		class: gplusFlickr\flickr\Api
+		arguments:
+			key: %flickr.key%
+			secret: %flickr.secret%
+
+	- gplusFlickr\flickr\Auth
+	- gplusFlickr\flickr\Dao
+	- gplusFlickr\flickr\Factory
+	- gplusFlickr\flickr\OnlineRepository
+	- gplusFlickr\flickr\Repository
+
+	# google
+	google.Api:
+		class: gplusFlickr\google\Api
+		arguments:
+			id: %google.id%
+			secret: %google.secret%
+
+	# picasa
+	- gplusFlickr\google\picasa\Dao
+	- gplusFlickr\google\picasa\Parser
+	- gplusFlickr\google\picasa\Repository
+	- gplusFlickr\google\picasa\Service
+
+	# oauth
+	-
+		class: gplusFlickr\oauth\ClientFactory
+		arguments:
+			verify: %ssl.verify%
+
+	# searching
+	- gplusFlickr\search\Dao
+	- gplusFlickr\search\Factory
+	- gplusFlickr\search\ImageSeeker
+	- gplusFlickr\search\Repository
+	- gplusFlickr\search\Service
+
+	# upload
+	- gplusFlickr\upload\Dao
+	- gplusFlickr\upload\Factory
+	- gplusFlickr\upload\Repository
+	- gplusFlickr\upload\Service
+	- gplusFlickr\upload\Uploadr
+

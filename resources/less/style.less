@@ -1,0 +1,182 @@
+@imagePath: '/images/';
+html {
+	font-family: "Open Sans", sans-serif;
+}
+* {
+	box-sizing: border-box;
+}
+body {
+	margin: 0;
+}
+
+.icon(@background) {
+	@size: 32px;
+	@margin: 5px;
+	padding: 0;
+	margin: 0;
+	display: block;
+	position: absolute;
+	top: @margin;
+	right: @margin;
+	width: @size;
+	height: @size;
+	text-indent: 100px;
+	white-space: nowrap;
+	overflow: hidden;
+	background: @background;
+}
+
+.albums {
+
+}
+
+.imageComment {
+	display: block;
+	position: absolute;
+	background-color: rgba(0, 0, 0, 0.3);
+	color: white;
+	font-size: .7em;
+	padding: 5px;
+	margin: 0;
+}
+
+@menuHeight: 30px;
+
+.menu {
+	position: fixed;
+	height: @menuHeight;
+	vertical-align: middle;
+	margin: 0;
+	padding: 0;
+	width: 100%;
+	z-index: 11;
+	background: white;
+	border-top: 1px solid white;
+
+	a {
+		color: black;
+		text-decoration: none;
+		padding: 5px 6px 4px;
+		margin: 5px;
+
+		&:hover {
+			text-decoration: underline;
+		}
+
+		&.active {
+			background-color: darkgrey;
+			color: white;
+		}
+	}
+}
+
+.afterMenu {
+	margin-top: 0;
+	padding-top: @menuHeight;
+}
+
+.photos {
+	text-align: justify;
+	.photo {
+		display: inline-block;
+		position: relative;
+		overflow: hidden;
+
+		&.loading:after {
+			@width: 43px;
+			@height: 11px;
+			content: '';
+			background: url("@{imagePath}loader.gif") no-repeat;
+			position: absolute;
+			width: @width;
+			height: @height;
+			left: 50%;
+			top: 50%;
+			margin-top: -@height/2;
+			margin-left: -@width/2;
+		}
+
+		img {
+			height: 150px;
+		}
+		.comment, .findLink {
+			display: none;
+		}
+
+		&.done, &.done:hover {
+			.findLink {
+				z-index: 10;
+				.icon(url("@{imagePath}done.png"));
+			}
+		}
+		&.error, &.error:hover {
+			.findLink {
+				z-index: 10;
+				.icon(url("@{imagePath}close.png"));
+			}
+		}
+		&.warning, &.warning:hover {
+			.findLink {
+				z-index: 10;
+				.icon(url("@{imagePath}notify.png"));
+			}
+		}
+
+		&:hover {
+			.comment {
+				.imageComment;
+				bottom: 0;
+				left: 0;
+				text-align: left;
+			}
+
+			.findLink {
+				.imageComment;
+				top: 0;
+				right: 0;
+			}
+		}
+	}
+	&.hide {
+		.photo.done {
+			display: none;
+		}
+	}
+}
+.googlePhoto {
+	position: relative;
+
+	.comment {
+		.imageComment;
+		bottom: 0;
+		left: 0;
+	}
+}
+.flickrPhotos {
+	.flickrPhoto {
+		display: inline-block;
+		position: relative;
+		overflow: hidden;
+
+		img {
+			height: 150px;
+		}
+
+		.dimensions {
+			.imageComment;
+			bottom: 0;
+			left: 0;
+			a {
+				color: white;
+			}
+		}
+
+		.invalidateLink {
+			.icon(url("@{imagePath}close.png"));
+		}
+
+		.validateLink {
+			.icon(url("@{imagePath}done.png"));
+		}
+	}
+}
